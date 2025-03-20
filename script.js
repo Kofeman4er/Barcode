@@ -1,18 +1,19 @@
 // Generate Barcode
 function generateBarcode() {
     let text = document.getElementById("barcodeText").value;
-    if (text) {
-        JsBarcode("#barcode", text, {
-            format: "CODE128",
-            displayValue: true
-        });
-    } else {
+    if (text.trim() === "") {
         alert("Please enter text to generate a barcode.");
+        return;
     }
+
+    JsBarcode("#barcode", text, {
+        format: "CODE128",
+        displayValue: true
+    });
 }
 
 // Start Barcode Scanner when input is focused
-document.getElementById("scannerInput").addEventListener("focus", startScanner);
+document.getElementById("barcodeInput").addEventListener("focus", startScanner);
 
 function startScanner() {
     let scannerElement = document.getElementById("scanner");
@@ -42,8 +43,24 @@ function startScanner() {
 
     // Process detected barcodes
     Quagga.onDetected(function(result) {
-        document.getElementById("scannerInput").value = result.codeResult.code;
-        Quagga.stop();
-        scannerElement.style.display = "none"; // Hide video after scan
+        document.getElementById("barcodeInput").value = result.codeResult.code;
+        stopScanner();
     });
+}
+
+// Stop Scanner
+function stopScanner() {
+    Quagga.stop();
+    document.getElementById("scanner").style.display = "none"; // Hide video after scanning
+}
+
+// Submit Barcode
+function submitBarcode() {
+    let barcode = document.getElementById("barcodeInput").value;
+    if (barcode.trim() === "") {
+        alert("Please enter or scan a barcode before submitting.");
+        return;
+    }
+
+    alert("Barcode submitted: " + barcode);
 }
