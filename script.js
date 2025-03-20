@@ -11,10 +11,13 @@ function generateBarcode() {
     }
 }
 
-// Start Barcode Scanner
+// Start Barcode Scanner when input is focused
+document.getElementById("scannerInput").addEventListener("focus", startScanner);
+
 function startScanner() {
     let scannerElement = document.getElementById("scanner");
-    
+    scannerElement.style.display = "block"; // Show video when scanning starts
+
     Quagga.init({
         inputStream: {
             name: "Live",
@@ -39,7 +42,8 @@ function startScanner() {
 
     // Process detected barcodes
     Quagga.onDetected(function(result) {
-        document.querySelector("#scanResult span").textContent = result.codeResult.code;
+        document.getElementById("scannerInput").value = result.codeResult.code;
         Quagga.stop();
+        scannerElement.style.display = "none"; // Hide video after scan
     });
 }
