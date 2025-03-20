@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Generator & Scanner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Barcode Generator</h2>
+        <input type="text" id="barcodeText" placeholder="Enter text to generate barcode">
+        <button onclick="generateBarcode()">Generate Barcode</button>
+        <svg id="barcode"></svg>
+
+        <h2>Barcode Scanner</h2>
+        <button onclick="startScanner()">Start Scanning</button>
+        <video id="scanner" autoplay></video>
+        <p id="scanResult">Scanned Code: <span></span></p>
+    </div>
+
+    <script src="JsBarcode.all.min.js"></script>
+    <script src="quagga.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
