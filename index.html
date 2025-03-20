@@ -13,8 +13,10 @@
         <button onclick="generateBarcode()">Generate Barcode</button>
         <svg id="barcode"></svg>
 
-        <h2>Barcode Scanner</h2>
-        <input type="text" id="scannerInput" placeholder="Tap here to scan barcode">
+        <h2>Barcode Input & Scanner</h2>
+        <input type="text" id="barcodeInput" placeholder="Enter barcode or scan">
+        <button onclick="submitBarcode()">Submit</button>
+        
         <video id="scanner" autoplay></video>
     </div>
 
